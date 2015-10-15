@@ -36,7 +36,7 @@ public class Board {
          * Creates a new n x n board and randomly fills it with one
          * queen in each column.
          */
-        Board(int n) {
+        public Board(int n) {
             rows = new int[n];
             scramble();
         }
@@ -44,7 +44,7 @@ public class Board {
         /**
          * Randomly fills the board with one queen in each column.
          */
-        void scramble() {
+        public void scramble() {
             for (int i = 0, n = rows.length; i < n; i++) {
                 rows[i] = i;
             }
@@ -60,7 +60,7 @@ public class Board {
          * Returns the number of queens that conflict with (row,col), not
          * counting the queen in column col.
          */
-        int conflicts(int row, int col) {
+        public int conflicts(int row, int col) {
             int count = 0;
             for (int c = 0; c < rows.length; c++) {
                 if (c == col) continue;
@@ -73,7 +73,7 @@ public class Board {
         /**
          * Fills the board with a legal arrangement of queens.
          */
-        void solve() {
+        public void solve() {
             int moves = 0;
 
             // This would be a lot faster if we used arrays of ints instead.
@@ -135,13 +135,19 @@ public class Board {
         /**
          * Prints the board, crudely, to a print stream.
          */
-        void print(PrintStream stream) {
+        public String print(PrintStream stream) {
+            
+            String output = "";
+            
             for (int r = 0; r < rows.length; r++) {
                 for (int c = 0; c < rows.length; c++) {
-                    stream.print(rows[c] == r ? 'Q' : '.');
+                    output += (rows[c] == r ? " Q " : " * ");
                 }
-                stream.println();
+                output += "\n";
             }
+            
+            return output;
+            
         }
     
 
