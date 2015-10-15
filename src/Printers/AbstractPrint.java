@@ -11,6 +11,19 @@ package Printers;
  */
 public class AbstractPrint {
     
+    public static void print(String outputText){
+        
+        System.out.print(outputText);
+        
+    }
+    
+    
+    public static void printLine(){
+        
+        System.out.println();
+        
+    }
+    
     public static void printLine(String outputText){
         
         System.out.println(outputText);
