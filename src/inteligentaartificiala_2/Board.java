@@ -37,14 +37,21 @@ public class Board {
          * queen in each column.
          */
         public Board(int n) {
-            rows = new int[n];
-            scramble();
+            rows = initializeState(n);
+            strategy(rows);
+        }
+        
+        public int[] initializeState(int n){
+            
+            return new int[n];
+            
         }
 
         /**
          * Randomly fills the board with one queen in each column.
          */
         public void scramble() {
+            
             for (int i = 0, n = rows.length; i < n; i++) {
                 rows[i] = i;
             }
@@ -60,7 +67,9 @@ public class Board {
          * Returns the number of queens that conflict with (row,col), not
          * counting the queen in column col.
          */
+        
         public int conflicts(int row, int col) {
+            
             int count = 0;
             for (int c = 0; c < rows.length; c++) {
                 if (c == col) continue;
@@ -131,9 +140,52 @@ public class Board {
                 }
             }
         }
+        
+        public boolean isFinal(int[] state){
+            
+            for(int i = 0;i < state.length; i++)
+                if(state[i] == 0)
+                    return false;
+            return true;
+            
+        }
+        
+        public boolean validState(int[] state, int i, int j){
+            
+            if(state[i] != 0)
+                return false;
+            for(int k = 0; k < state.length; k++){
+                if(state[k] == j)
+                    return false;
+                if((Math.abs(i-k) == Math.abs(j-state[k]))&&(state[k]!=0))
+                    return false;
+            }
+            return true;
+        }
+        
+        public void strategy(int[] state){
+            
+            int i;
+            int j;
+            
+            while(!isFinal(state)){
+                
+                i = random.nextInt(state.length);
+                j = random.nextInt(state.length);
+                
+                if(validState(state, i, j))
+                    state[i] = j;
+                
+            }
+            print(System.out);
+            
+        }
+        
 
         /**
          * Prints the board, crudely, to a print stream.
+     * @param stream
+     * @return 
          */
         public String print(PrintStream stream) {
             

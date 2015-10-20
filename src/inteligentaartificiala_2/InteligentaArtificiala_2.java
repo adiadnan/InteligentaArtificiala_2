@@ -16,17 +16,13 @@ public class InteligentaArtificiala_2 {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
+        
         // TODO code application logic here
         
-        Board board = new Board(500);
-        long start = System.currentTimeMillis();
-        board.solve();
-        long stop = System.currentTimeMillis();
+        Board board = new Board(10);
         
-        board.print(System.out);
-        
-        System.out.println("Found in " + ((double)(stop-start))/1000 + "s.");
         
     }
     
